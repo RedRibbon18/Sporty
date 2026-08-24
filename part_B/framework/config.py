@@ -1,4 +1,5 @@
 import os
+import logging.config
 from dataclasses import dataclass
 
 
@@ -32,7 +33,7 @@ ENVIRONMENTS = {
         name="qa",
         base_url="https://qae-assignment-tau.vercel.app/",
         api_base_url="https://qae-assignment-tau.vercel.app/api",
-        user_id="candidate-J8g8HD3Lsw",
+        user_id="",
     ),
     "prod": EnvironmentConfig(
         name="prod",
@@ -46,3 +47,29 @@ ENVIRONMENTS = {
 def get_environment_config(env_name: str | None = None) -> EnvironmentConfig:
     env_name = env_name or os.environ.get("TEST_ENV", DEFAULT_ENV)
     return ENVIRONMENTS.get(env_name.lower(), ENVIRONMENTS[DEFAULT_ENV])
+
+
+LOGGING_CONFIG = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        }
+    }
+}
+
+logging.config.dictConfig(LOGGING_CONFIG)

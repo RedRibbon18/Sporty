@@ -1,12 +1,12 @@
 import json
 
 import pytest
-from framework.api.api_client import ApiClient
+from framework.api.place_bet_service import PlaceBetService
 
 
 @pytest.mark.regression
 @pytest.mark.smoke
-def test_api_place_bet_unauthorized(endpoints, valid_match_id):
+def test_api_place_bet_unauthorized(valid_match_id):
     """
     Test to verify that not authorized user can not place a bet
     """
@@ -19,8 +19,8 @@ def test_api_place_bet_unauthorized(endpoints, valid_match_id):
         "stake": 10.00
     }
 
-    client = ApiClient()
-    response = client.post(endpoints["place_bet"], json=json.dumps(body), headers=headers)
+    pb_service = PlaceBetService()
+    response = pb_service.place_bet(json=json.dumps(body), headers=headers)
     pytest.assume( response.status_code == expected_code, (
         "Invalid status code for unauthorized request:\n"
         f"Found: {response.status_code}, "

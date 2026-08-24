@@ -9,6 +9,7 @@ CURRENCY = "€"  # Assuming the currency is Euro, adjust as needed
 
 @pytest.mark.smoke
 @pytest.mark.regression
+#@pytest.mark.skip(reason="Showing how to skip a test")
 @pytest.mark.parametrize(
     "result, stake",
     [
