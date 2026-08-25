@@ -36,8 +36,8 @@ def pytest_addoption(parser):
     )
     parser.addoption(
         "--user-id",
-        action="store_true",
-        default="candidate-J8g8HD3Lsw",
+        action="store",
+        required=True,
         help="User id to authorization",
     )
 

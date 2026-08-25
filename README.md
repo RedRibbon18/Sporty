@@ -43,23 +43,26 @@ This workspace contains the resolution of a Sporty take home assignment, which  
 
 - Run smoke tests only:
   ```bash
-  pytest -m smoke
+  cd part_B
+  pytest -m smoke --user-id candidate-J8g8HD3Lsw
   ```
 
 - Run regression tests only:
   ```bash
-  pytest -m regression
+  cd part_B
+  pytest -m regression --user-id candidate-J8g8HD3Lsw
   ```
 
 - Use a custom base URL for E2E tests:
   ```bash
-  pytest part_B/tests/e2e --browser firefox --headless --base-url https://your-app.example.com
+  pytest part_B/tests/e2e --browser firefox --headless --base-url https://your-app.example.com  --user-id candidate-J8g8HD3Lsw
   ```
 
 - Set environment in shell via `TEST_ENV`:
   ```bash
+  cd part_B
   $env:TEST_ENV = "qa"
-  pytest part_B/tests/e2e
+  pytest part_B/tests/e2e --user-id candidate-J8g8HD3Lsw
   ```
 
 ## Structure
